@@ -10,4 +10,11 @@ class ModelSecurity extends CI_Model {
 			redirect('auth');
 		}
 	}
+	public function getCsrf(){
+		if ($this->input->post($this->security->get_csrf_token_name()) !== $this->security->get_csrf_hash()) {
+            // CSRF token tidak valid, handle sesuai kebutuhan
+            echo "CSRF Token Mismatch";
+            return;
+        }
+	}
 }

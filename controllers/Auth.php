@@ -7,11 +7,7 @@ class Auth extends CI_Controller
 	{
 		$this->load->view('login');
 		// $this->load->view('login_baak');
-		  if ($this->input->post($this->security->get_csrf_token_name()) !== $this->security->get_csrf_hash()) {
-            // CSRF token tidak valid, handle sesuai kebutuhan
-            echo "CSRF Token Mismatch";
-            return;
-        }
+		  $this->ModelSecurity->getCsrf();
 
 	}
 
@@ -204,8 +200,7 @@ class Auth extends CI_Controller
 	// LOGIN Baak ADMIN
 	public function bauk_login()
 	{
-
-		$this->form_validation->set_rules('username', 'Username', 'required', ['required' => 'Username wajib diisi']);
+	$this->form_validation->set_rules('username', 'Username', 'required', ['required' => 'Username wajib diisi']);
 		$this->form_validation->set_rules('password', 'Password', 'required', ['required' => 'Password wajib diisi']);
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('login');
