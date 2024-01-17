@@ -9,6 +9,7 @@ class Profil extends CI_Controller
 		parent::__construct();
 		//url security
 		$this->ModelSecurity->getSecurity();
+		$this->ModelSecurity->getCsrf();
 	}
 
 	public function index()
@@ -20,9 +21,9 @@ class Profil extends CI_Controller
 		$data['setting'] = $this->db->get('mahasiswa')->row_array();
 		//get data dari session
 		$data['mhs'] = $this->KrsModel->getDataMhs();
-		$this->load->view('mhs/templates/header', $data);
-		$this->load->view('mhs/profil-mhs', $data);
-		$this->load->view('mhs/templates/footer');
+		// $this->load->view('mhs/templates/header', $data);
+		$this->load->view('mhs/profil-mhs-st', $data);
+		// $this->load->view('mhs/templates/footer');
 	}
 
 	public function updateAksi()

@@ -466,6 +466,10 @@ $config['csrf_exclude_uris'] = array(
 	'auth/login',
 	'auth/bauk_login',
 	'auth/baak',
+	'mhs/profil',
+	'mhs/profil/updateAksi',
+	'mhs/profil/updatePhoto',
+	'mhs/profil/updateAksiSemester',
 	
 
 );

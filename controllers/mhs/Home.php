@@ -23,8 +23,8 @@ class Home extends CI_Controller
 		$data['post'] = $this->db->get('post')->row_array();
 		$data['slider'] = $this->db->get('img_slider')->result();
 
-		$this->load->view('mhs/templates/header', $data);
-		$this->load->view('mhs/home-mhs');
-		$this->load->view('mhs/templates/footer');
+		
+		$this->load->view('mhs/dashboard_mhs', $data);
+	
 	}
 }
