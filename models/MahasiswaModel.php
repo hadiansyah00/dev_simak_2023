@@ -2,6 +2,11 @@
 
 class MahasiswaModel extends CI_Model
 {
+	public function updateUserProfile($id_mahasiswa, $data) {
+        // Update user profile based on the provided data
+        $this->db->where('id_mahasiswa', $id_mahasiswa);
+        $this->db->update('mahasiswa', $data);
+    }
 
 	public function getData()
 	{

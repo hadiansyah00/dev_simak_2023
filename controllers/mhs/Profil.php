@@ -26,6 +26,47 @@ class Profil extends CI_Controller
 		// $this->load->view('mhs/templates/footer');
 	}
 
+
+	  public function updateAksiProfil() {
+    
+        $this->form_validation->set_rules('nama_mhs', 'Nama Lengkap', 'required');
+        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('hp', 'No Hp / WA', 'required');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+		$this->form_validation->set_rules('kota', 'Kota', 'required');
+        $this->form_validation->set_rules('jk', 'Jenis Kelamin', 'required');
+        // Add more validation rules as needed
+
+        if ($this->form_validation->run() === FALSE) {
+            // Form validation failed, reload the form with errors
+            $this->load->view('mhs/profil-mhs-st'); // Adjust the view name
+        } else {
+            // Form validation passed, update user profile
+            $data = array(
+                'nama_mhs' => $this->input->post('nama_mhs'),
+                'agama' => $this->input->post('agama'),
+                'jk' => $this->input->post('jk'),
+                'tempat_lahir' => $this->input->post('tempat_lahir'),
+                'email' => $this->input->post('email'),
+                'hp' => $this->input->post('hp'),
+                'alamat' => $this->input->post('alamat'),
+                'kota' => $this->input->post('kota')
+                // Add more fields as needed
+            );
+
+            $id_mahasiswa = $this->input->post('id_mahasiswa');
+
+            // Call the model method to update the user profile
+            $this->MahasiswaModel->updateUserProfile($id_mahasiswa, $data);
+
+            // Optionally, set a success flash message
+            $this->session->set_flashdata('success', 'Profile updated successfully.');
+
+            // Redirect to a success page or any desired page
+            redirect('mhs/profil');
+        }
+    }
 	public function updateAksi()
 	{
 		$id 	= $this->input->post('id_mahasiswa');
@@ -78,45 +119,56 @@ class Profil extends CI_Controller
 		redirect('mhs/profil');
 	}
 
-	public function updatePhoto()
-	{
-		$id 	= $this->input->post('id_mahasiswa');
+public function updatePhoto()
+    {
+        $id = $this->input->post('id_mahasiswa');
+        $config['upload_path'] = FCPATH . 'assets/images/uploads/';
+        $config['allowed_types'] = 'jpeg|jpg|png|gif|tiff';
+		$config['max_size'] = 2048; // Ukuran maksimum dalam kilobyte
+   		$config['encrypt_name'] = TRUE;
+   		$this->upload->initialize($config);
+        // $this->load->library('upload', $config);
 
-		$photo	= $_FILES['photo']['name'];
-		if ($photo) {
-			$config['upload_path']		= './assets/images/uploads';
-			$config['allowed_types']	= 'jpeg|jpg|png|gif|tiff';
+        // Cek apakah file diupload
+      // Cek apakah file diupload
+       // File berhasil diupload
+    if ($this->upload->do_upload('photo')) {
+        // Get the uploaded file data
+        $photo = $this->upload->data('file_name');
 
-			$this->load->library('upload', $config);
+        // Hapus file lama jika ada
+        $item = $this->db->get_where('mahasiswa', array('id_mahasiswa' => $id))->row();
+        if ($item->photo != null) {
+            $target_file = './assets/images/uploads/' . $item->photo;
+            if (file_exists($target_file)) {
+                unlink($target_file);
+            }
+        }
 
-			if ($this->upload->do_upload('photo')) {
+        // Update database
+        $data = array(
+            'photo'      => $photo,
+            'tgl_update' => date('y-m-d')
+        );
+        $this->db->where('id_mahasiswa', $id);
+        $this->db->update('mahasiswa', $data);
 
-				$photo = $this->upload->data('file_name');
-				$this->db->set('photo', $photo);
-			} else {
-				echo "Gagal upload";
-			}
-		}
-		$data = array(
-			'photo' => $photo,
-			'tgl_update' => date('y-m-d')
-		);
+        // Set success message
+        $this->session->set_flashdata('success', 'Berhasil upload gambar.');
 
-		$where = array('id_mahasiswa' => $id);
+        // Redirect ke halaman profil
+        redirect('mhs/profil');
+    } else {
+        // Gagal upload file
+        $error = 'Gagal upload file. ' . $this->upload->display_errors();
+        $this->session->set_flashdata('error', $error);
+        $this->session->set_flashdata('upload_path', $config['upload_path']);
 
-		//timpah data 
-		$item = $this->db->get_where('mahasiswa', $where)->row();
-
-		if ($item->photo != null) {
-			$target_file = './assets/images/uploads/' . $item->photo;
-			unlink($target_file);
-		}
-
-		//var_dump($data);
-		$this->db->update('mahasiswa', $data, $where);
-		redirect('mhs/profil');
-	}
-
+       
+        // Redirect ke halaman profil
+        redirect('mhs/profil');
+    }
+}
 	public function updateAksiSemester()
 	{
 		$id 	= $this->input->post('id_mahasiswa');
