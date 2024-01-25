@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Jadwal extends CI_Controller
+class Jadwal_kuliah extends CI_Controller
 {
 
 	public function __construct()
@@ -9,8 +9,6 @@ class Jadwal extends CI_Controller
 		parent::__construct();
 		//url security
 		$this->ModelSecurity->getSecurity();
-		// $this->ModelSecurity->getCsrf()();
-
 	}
 
 	public function index()
@@ -32,8 +30,8 @@ class Jadwal extends CI_Controller
 		//get Jadwal for mahasiswa
 		//tampil data KRS berdasarkan sessi login mhs
 		$data['viewKrs'] = $this->KrsModel->viewKrs($mhs['id_mahasiswa'], $ta['id_ta']);
-	
+		// $this->load->view('mhs/templates/header', $data);
 		$this->load->view('mhs/jadwal/jadwal_kuliah', $data);
-		
+		// $this->load->view('mhs/templates/footer');
 	}
 }

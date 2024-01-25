@@ -34,8 +34,8 @@ class Khs extends CI_Controller
 		//tampil data KRS berdasarkan sessi login mhs
 		$data['viewKrs'] = $this->KrsModel->viewKrs($mhs['id_mahasiswa'], $ta['id_ta']);
 			$data['setting_edom'] = $this->db->get('krs')->row_array();
-		$this->load->view('mhs/templates/header', $data);
-		$this->load->view('mhs/khs-mhs', $data);
-		$this->load->view('mhs/templates/footer');
+		// $this->load->view('mhs/templates/header', $data);
+		$this->load->view('mhs/khs/khs-mhs-st', $data);
+		// $this->load->view('mhs/templates/footer');
 	}
 }

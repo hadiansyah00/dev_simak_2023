@@ -30,34 +30,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </li> -->
             <li class="menu-header">Informasi Akademik</li>
             <li
-                class="dropdown <?php echo $this->uri->segment(2) == 'layout_default' || $this->uri->segment(2) == 'layout_transparent' || $this->uri->segment(2) == 'layout_top_navigation' ? 'active' : ''; ?>">
+                class="dropdown <?php echo $this->uri->segment(2) == 'jadwal' || $this->uri->segment(2) == 'jadwaluts' || $this->uri->segment(2) == 'jadwaluas' ? 'active' : ''; ?>">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Jadwal Perkuliahan</span></a>
                 <ul class="dropdown-menu">
-                    <li class="<?php echo $this->uri->segment(2) == 'layout_default' ? 'active' : ''; ?>"><a
-                            class="nav-link" href="<?php echo base_url(); ?>mhs/dist/layout_default">Jadwal Kuliah</a>
+                    <li class="<?php echo $this->uri->segment(2) == 'jadwal' ? 'active' : ''; ?>"><a class="nav-link"
+                            href="<?php echo base_url(); ?>mhs/jadwal">Jadwal Kuliah</a>
                     </li>
-                    <li class="<?php echo $this->uri->segment(2) == 'bootstrap_badge' ? 'active' : ''; ?>"><a
-                            class="nav-link" href="<?php echo base_url(); ?>mhs/dist/bootstrap_badge">Jadwal UTS</a>
+                    <li class="<?php echo $this->uri->segment(2) == 'jadwaluts' ? 'active' : ''; ?>"><a class="nav-link"
+                            href="<?php echo base_url(); ?>mhs/jadwaluts">Jadwal UTS</a>
                     </li>
-                    <li class="<?php echo $this->uri->segment(2) == 'bootstrap_badge' ? 'active' : ''; ?>"><a
-                            class="nav-link" href="<?php echo base_url(); ?>mhs/dist/bootstrap_badge">Jadwal UAS</a>
-                    </li>
-                </ul>
-            </li>
-            <li
-                class="dropdown <?php echo $this->uri->segment(2) == 'layout_default' || $this->uri->segment(2) == 'layout_transparent' || $this->uri->segment(2) == 'layout_top_navigation' ? 'active' : ''; ?>">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span>Kartu Ujian</span></a>
-                <ul class="dropdown-menu">
-                    <li class="<?php echo $this->uri->segment(2) == 'layout_default' ? 'active' : ''; ?>"><a
-                            class="nav-link" href="<?php echo base_url(); ?>mhs/dist/layout_default">Kartu UTS</a>
-                    </li>
-                    <li class="<?php echo $this->uri->segment(2) == 'layout_default' ? 'active' : ''; ?>"><a
-                            class="nav-link" href="<?php echo base_url(); ?>mhs/dist/layout_default">Kartu UAS</a>
+                    <li class="<?php echo $this->uri->segment(2) == 'jadwaluas' ? 'active' : ''; ?>"><a class="nav-link"
+                            href="<?php echo base_url(); ?>mhs/jadwaluas">Jadwal UAS</a>
                     </li>
                 </ul>
             </li>
+
 
             <li class="menu-header">Akademik</li>
 
@@ -65,13 +53,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 class="dropdown <?php echo $this->uri->segment(2) == 'forms_advanced_form' || $this->uri->segment(2) == 'forms_editor' || $this->uri->segment(2) == 'forms_validation' ? 'active' : ''; ?>">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Akademik</span></a>
                 <ul class="dropdown-menu">
-                    <li class="<?php echo $this->uri->segment(2) == 'forms_advanced_form' ? 'active' : ''; ?>"><a
-                            class="nav-link" href="<?php echo base_url(); ?>mhs/dist/forms_advanced_form">Isi KRS</a>
+                    <li class="<?php echo $this->uri->segment(2) == 'mhs/Krs' ? 'active' : ''; ?>"><a class="nav-link"
+                            href="<?php echo base_url(); ?>mhs/Krs">Isi KRS</a>
                     </li>
-                    <li class="<?php echo $this->uri->segment(2) == 'forms_editor' ? 'active' : ''; ?>"><a
-                            class="nav-link" href="<?php echo base_url(); ?>mhs/dist/forms_editor">Cetak KRS</a></li>
-                    <li class="<?php echo $this->uri->segment(2) == 'forms_editor' ? 'active' : ''; ?>"><a
-                            class="nav-link" href="<?php echo base_url(); ?>mhs/dist/forms_editor">Cetak KHS</a></li>
+                    <li class="<?php echo $this->uri->segment(2) == 'mhs/KrsView' ? 'active' : ''; ?>"><a
+                            class="nav-link" href="<?php echo base_url(); ?>mhs/KrsView">Cetak KRS</a></li>
+                    <li class="<?php echo $this->uri->segment(2) == 'mhs/Khs' ? 'active' : ''; ?>"><a class="nav-link"
+                            href="<?php echo base_url(); ?>mhs/Khs">Cetak KHS</a></li>
 
                 </ul>
             </li>

@@ -3,31 +3,7 @@
 class JadwalutsModel extends CI_Model
 {
 
-	//JOIN TABLE DENGAN SINTAK QUERY SQL
-	// public function getData($id)
-	// {
-	// 	$data = "SELECT 
-	// 			jadwal.id_jadwal,
-	// 			jadwal.semester,
-	// 			jadwal.hari,
-	// 			jadwal.jam,
-	// 			jadwal.ruangan,
-	// 			jadwal.tgl_insert,
-	// 			jadwal.tgl_update,
-	// 			ta.ta,
-	// 			jurusan.jurusan,
-	// 			matakuliah.matakuliah,
-	// 			dosen.nama_dosen
-	// 			FROM
-	// 			jadwal
-	// 			INNER JOIN ta ON ta.id_ta = jadwal.id_ta
-	// 			INNER JOIN jurusan ON jurusan.kd_jurusan = jadwal.kd_jurusan
-	// 			INNER JOIN dosen ON dosen.id_dosen = jadwal.id_dosen
-	// 			INNER JOIN matakuliah ON matakuliah.kd_mk = jadwal.kd_mk
-	// 			WHERE jadwal.kd_jurusan = $id
-	// 			ORDER BY semester ASC";
-	// 	return $this->db->query($data);
-	// }
+	
 
 	public function getAll($id)
 	{
@@ -183,12 +159,13 @@ public function Hide_uts(){
 
 	public function getMatkul_KRS($kd_jurusan)
 	{
+		
 		$this->db->select('*');
 		$this->db->from('jadwal_uts');
 		$this->db->join('ta', 'ta.id_ta = jadwal_uts.id_ta', 'left');
 		$this->db->join('matakuliah', 'matakuliah.kd_mk = jadwal_uts.kd_mk', 'left');
 		$this->db->join('jurusan', 'jurusan.kd_jurusan = jadwal_uts.kd_jurusan', 'left');
-// 		$this->db->where('jadwal_uts.kelas', '0');
+		$this->db->where('jadwal_uts.kelas', '1');
 		$this->db->where('jadwal_uts.kd_jurusan', $kd_jurusan);
 		$this->db->order_by('smt', 'ASC');
 		$this->db->order_by('tgl_uts', 'ASC');
@@ -200,6 +177,7 @@ public function Hide_uts(){
 	{
 		$this->db->select('*');
 		$this->db->from('jadwal_uts');
+		$this->db->join('ta', 'ta.id_ta = jadwal_uts.id_ta', 'left');
 		$this->db->join('matakuliah', 'matakuliah.kd_mk = jadwal_uts.kd_mk', 'left');
 		$this->db->join('jurusan', 'jurusan.kd_jurusan = jadwal_uts.kd_jurusan', 'left');
 		$this->db->where('jadwal_uts.kelas', '2');

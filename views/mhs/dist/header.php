@@ -7,8 +7,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title><?php echo $title; ?> &mdash; Stisla</title>
-
+    <title><?php echo $title; ?> &mdash;SIAKAD-SBH</title>
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/logo_sbh.png">
     <!-- General CSS Files -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets-new-look/modules/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets-new-look/modules/fontawesome/css/all.min.css">

@@ -9,6 +9,7 @@ class Krs extends CI_Controller
 		parent::__construct();
 		//url security
 		$this->ModelSecurity->getSecurity();
+		
 	}
 
 	public function index()
@@ -37,9 +38,9 @@ class Krs extends CI_Controller
 		//tampil data KRS berdasarkan sessi login mhs
 		$data['viewKrs'] = $this->KrsModel->viewKrs($mhs['id_mahasiswa'], $ta['id_ta']);
 
-		$this->load->view('mhs/templates/header', $data);
-		$this->load->view('mhs/krs-mhs', $data);
-		$this->load->view('mhs/templates/footer');
+		// $this->load->view('mhs/templates/header', $data);
+		$this->load->view('mhs/krs/krs-mhs-st', $data);
+		// $this->load->view('mhs/templates/footer');
 	}
 
    
@@ -188,6 +189,6 @@ class Krs extends CI_Controller
 				
 			</div>'
 		);
-		redirect('mhs/krs');
+		redirect('mhs/KrsView');
 	}
 }

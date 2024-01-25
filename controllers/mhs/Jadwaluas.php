@@ -32,9 +32,9 @@ class Jadwaluas extends CI_Controller
 		//tampil data KRS berdasarkan sessi login mhs
 		$data['viewKrs'] = $this->KrsModel->viewKrs($mhs['id_mahasiswa'], $ta['id_ta']);
 
-		$this->load->view('mhs/templates/header', $data);
-		$this->load->view('mhs/jadwal_uas', $data);
-		$this->load->view('mhs/templates/footer');
+		// $this->load->view('mhs/templates/header', $data);
+		$this->load->view('mhs/jadwal/jadwal_uas', $data);
+		// $this->load->view('mhs/templates/footer');
 	}
 	
 	public function print_uas_kelas_pagi($data)
@@ -91,7 +91,9 @@ class Jadwaluas extends CI_Controller
 		foreach ($getUas as $d) {
 		    	if ($d->semester == $tahun['semester']) { 
 				if ($d->smt == $mhs['semester']) { 
+				if ($d->status == $tahun['status']) {
 				$sksk = $sksk + $row->sks; 
+				
 				
 			$pdf->Cell(10, 7, $no++. '.', 1, 0, 'C');
 			$pdf->Cell(75, 7, $d->matakuliah, 1, 0,'L');
@@ -103,6 +105,7 @@ class Jadwaluas extends CI_Controller
 	        	}
 	    	}
 		}
+	}
 			$pdf->Ln(5);
 		    $pdf->Cell(8);
 		    $pdf->SetFont('Helvetica', 'B', 8);
@@ -183,9 +186,11 @@ class Jadwaluas extends CI_Controller
 		$pdf->Ln();
 		$no = 1;
 		$sksk = 0;
+		
 		foreach ($getUas_karyawan as $d) {
-		    	if ($d->semester == $tahun['semester']) { 
+		     	if ($d->semester == $tahun['semester']) { 
 				if ($d->smt == $mhs['semester']) { 
+				    if ($d->status == $mhs['status']) {
 				$sksk = $sksk + $row->sks; 
 				
 			$pdf->Cell(10, 7, $no++. '.', 1, 0, 'C');
@@ -198,6 +203,7 @@ class Jadwaluas extends CI_Controller
 	        	}
 	    	}
 		}
+	}
 			$pdf->Ln(5);
 		    $pdf->Cell(8);
 		    $pdf->SetFont('Helvetica', 'B', 8);

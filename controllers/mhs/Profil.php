@@ -47,11 +47,54 @@ class Profil extends CI_Controller
                 'nama_mhs' => $this->input->post('nama_mhs'),
                 'agama' => $this->input->post('agama'),
                 'jk' => $this->input->post('jk'),
+				'tgl_lahir' => $this->input->post('tgl_lahir'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'email' => $this->input->post('email'),
                 'hp' => $this->input->post('hp'),
                 'alamat' => $this->input->post('alamat'),
                 'kota' => $this->input->post('kota')
+                // Add more fields as needed
+            );
+
+            $id_mahasiswa = $this->input->post('id_mahasiswa');
+
+            // Call the model method to update the user profile
+            $this->MahasiswaModel->updateUserProfile($id_mahasiswa, $data);
+
+            // Optionally, set a success flash message
+            $this->session->set_flashdata('success', 'Profile updated successfully.');
+
+            // Redirect to a success page or any desired page
+            redirect('mhs/profil');
+        }
+    }
+	 public function infoMhs() {
+    
+        $this->form_validation->set_rules('asal_sekolah', 'Asal Sekolah', 'required');
+        $this->form_validation->set_rules('nisn', 'NISN', 'required');
+		$this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'required');
+		$this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'required');
+		$this->form_validation->set_rules('hp_ortu', 'No Telp Wali/Ortu', 'required');
+		$this->form_validation->set_rules('alamat_ortu', 'Alamat Orang Tua', 'required');
+		$this->form_validation->set_rules('pendapatan_ortu', 'Kisaran Pendapatan', 'required');
+        
+        // Add more validation rules as needed
+
+        if ($this->form_validation->run() === FALSE) {
+            // Form validation failed, reload the form with errors
+            $this->load->view('mhs/profil-mhs-st'); // Adjust the view name
+        } else {
+            // Form validation passed, update user profile
+            $data = array(
+                'asal_sekolah' => $this->input->post('asal_sekolah'),
+                'nisn' => $this->input->post('nisn'),
+                'nama_ayah' => $this->input->post('nama_ayah'),
+                'nama_ibu' => $this->input->post('nama_ibu'),
+                'hp_ortu' => $this->input->post('hp_ortu'),
+                'alamat_ortu' => $this->input->post('alamat_ortu'),
+				'nama_wali' => $this->input->post('nama_wali'),
+                'pendapatan_ortu' => $this->input->post('pendapatan_ortu'),
+             
                 // Add more fields as needed
             );
 
@@ -201,39 +244,39 @@ public function updatePhoto()
 	}
 
 	public function updatePass()
-	{
+{
+    // Form validation rules
+    $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]|matches[u_password]', [
+        'matches' => 'Password tidak sama!',
+        'min_length' => 'Password terlalu pendek!'
+    ]);
+    $this->form_validation->set_rules('u_password', 'Confirm Password', 'required|trim|matches[password]');
 
-		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]|matches[u_password]', [
-			'matches' => 'Password tidak sama!',
-			'min_length' => 'Password terlalu pendek!'
-		]);
-		$this->form_validation->set_rules('u_password', 'Password', 'required|trim|matches[password]');
+    if ($this->form_validation->run() == FALSE) {
+        // Validation failed, reload the form or redirect as needed
+        $this->session->set_flashdata('pesan', '<div class="alert alert-danger">Validation error</div>');
+        redirect('mhs/profil'); // Adjust the URL as needed
+    } else {
+        // Validation passed, update the password in the database
+        $id = $this->input->post('id_mahasiswa');
 
-		$id 	= $this->input->post('id_mahasiswa');
+        $data = array(
+            'password' => md5($this->input->post('password')),
+            'tgl_update' => date('Y-m-d') // Fixed date format
+        );
 
-		$data = array(
-			'password' => md5($this->input->post('password')),
-			'tgl_update' => date('y-m-d')
-		);
+        $where = array('id_mahasiswa' => $id);
+        $this->db->update('mahasiswa', $data, $where);
 
-		$where = array('id_mahasiswa' => $id);
-		//var_dump($data);
-		$this->db->update('mahasiswa', $data, $where);
-		$this->session->set_flashdata(
-			'pesan',
-			'<div class="alert alert-block alert-success">
-				<button type="button" class="close" data-dismiss="alert">
-					<i class="ace-icon fa fa-times"></i>
-				</button>
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success">
+                <strong>Password</strong> Berhasil di Update!
+            </div>'
+        );
 
-				<i class="ace-icon fa fa-check green"></i>
- 
-				<strong class="green">
-					Password
-				</strong>
-				Berhasi di Update!
-			</div>'
-		);
-		redirect('mhs/profil');
-	}
+        redirect('mhs/profil'); // Adjust the URL as needed
+    }
+}
+
 }

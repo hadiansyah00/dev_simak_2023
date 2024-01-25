@@ -21,16 +21,15 @@ $this->load->view('mhs/dist/header');
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                        aria-controls="home" aria-selected="true">Profile</a>
+                                        aria-controls="home" aria-selected="true">Akun</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                        aria-controls="profile" aria-selected="false">Informasi Akademik</a>
+                                        aria-controls="profile" aria-selected="false">Informasi Mahasiswa</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="identitas-tab" data-toggle="tab" href="#identitas"
-                                        role="tab" aria-controls="identitas" aria-selected="false">Identitas Sekolah
-                                        Asal</a>
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                                        aria-controls="contact" aria-selected="false">Informasi Akademik</a>
                                 </li>
 
                             </ul>
@@ -82,8 +81,19 @@ $this->load->view('mhs/dist/header');
                                             <div class="card card-primary">
                                                 <div class="card-header">
                                                     <h4>Reset Password</h4>
+
                                                 </div>
-                                                <form method="POST">
+                                                <!-- Flash Messages -->
+
+
+                                                <!-- User Profile Form -->
+                                                <form method="POST"
+                                                    action="<?php echo base_url('mhs/profil/updatePass'); ?>">
+                                                    <input type="hidden" name="id_mahasiswa"
+                                                        value="<?= $mhs['id_mahasiswa']; ?>">
+                                                    <input type="hidden"
+                                                        name="<?= $this->security->get_csrf_token_name(); ?>"
+                                                        value="<?= $this->security->get_csrf_hash(); ?>">
                                                     <div class="form-group">
                                                         <label for="password">New Password</label>
                                                         <input id="password" type="password"
@@ -98,7 +108,7 @@ $this->load->view('mhs/dist/header');
                                                     <div class="form-group">
                                                         <label for="password-confirm">Confirm Password</label>
                                                         <input id="password-confirm" type="password"
-                                                            class="form-control" name="confirm-password" tabindex="2"
+                                                            class="form-control" name="u_password" tabindex="2"
                                                             required>
                                                     </div>
 
@@ -109,9 +119,10 @@ $this->load->view('mhs/dist/header');
                                                         </button>
                                                     </div>
                                                 </form>
-
                                             </div>
+
                                         </div>
+
                                         <div class="col-12 col-md-12 col-lg-7">
                                             <div class="card">
                                                 <?php if ($this->session->flashdata('success')): ?>
@@ -194,12 +205,22 @@ $this->load->view('mhs/dist/header');
                                                         </div>
 
                                                         <div class="row">
-                                                            <div class="form-group col-12">
+
+                                                            <div class="form-group col-md-6 col-12">
+                                                                <label>Tanggal Lahir</label>
+                                                                <input type="date" name="tgl_lahir"
+                                                                    value="<?php echo $mhs['tgl_lahir']; ?>"
+                                                                    class="form-control">
+                                                            </div>
+
+
+                                                            <div class="form-group col-md-6 col-12">
                                                                 <label>Tempat Lahir</label>
                                                                 <input type="text" name="tempat_lahir"
                                                                     value="<?php echo $mhs['tempat_lahir']; ?>"
                                                                     class="form-control">
                                                             </div>
+
                                                         </div>
 
                                                         <div class="row">
@@ -247,159 +268,277 @@ $this->load->view('mhs/dist/header');
                                 <!-- Tab informasi Akademik -->
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="card-body">
-                                        <h3 class="card-header"> Informasi Akademik</h3>
+                                        <h3 class="card-header"> Informasi Mahasiswa</h3>
                                         <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="card">
-                                                    <form>
-                                                        <div class="card-body">
-                                                            <div class="row">
-                                                                <div class="col-md-6 col-lg-6">
-                                                                    <div class="form-group">
-                                                                        <label>Your Name</label>
-                                                                        <input type="text" class="form-control is-valid"
-                                                                            value="Rizal Fakhri" required="">
-                                                                        <div class="valid-feedback">
-                                                                            Good job!
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6 col-lg-6">
-                                                                    <div class="form-group">
-                                                                        <label>Your Name</label>
-                                                                        <input type="text" class="form-control is-valid"
-                                                                            value="Rizal Fakhri" required="">
-                                                                        <div class="valid-feedback">
-                                                                            Good job!
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Your Name</label>
-                                                                <input type="text" class="form-control is-valid"
-                                                                    value="Rizal Fakhri" required="">
-                                                                <div class="valid-feedback">
-                                                                    Good job!
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Email</label>
-                                                                <input type="email" class="form-control is-invalid"
-                                                                    required="" value="rizal@fakhri">
-                                                                <div class="invalid-feedback">
-                                                                    Oh no! Email is invalid.
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Subject</label>
-                                                                <input type="email" class="form-control">
-                                                            </div>
-                                                            <div class="form-group mb-0">
-                                                                <label>Message</label>
-                                                                <textarea class="form-control is-invalid"
-                                                                    required="">Hello, i'm handsome!</textarea>
-                                                                <div class="invalid-feedback">
-                                                                    Oh no! You entered an inappropriate word.
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-footer text-right">
-                                                            <button class="btn btn-primary">Submit</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="identitas" role="tabpanel"
-                                    aria-labelledby="identitas-tab">
-                                    <div class="card-body">
-                                        <h3 class="card-header"> Identitas Sekolah Asal</h3>
-                                        <div class="row">
-                                            <div class="col-12 col-md-12">
-                                                <div class="card">
-                                                    <form>
-                                                        <div class="card-body">
-                                                            <div class="row">
-                                                                <div class="col-md-6 col-lg-6">
-                                                                    <div class="form-group">
-                                                                        <label>Your Name</label>
-                                                                        <input type="text" class="form-control is-valid"
-                                                                            value="Rizal Fakhri" required="">
-                                                                        <div class="valid-feedback">
-                                                                            Good job!
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6 col-lg-6">
-                                                                    <div class="form-group">
-                                                                        <label>Your Name</label>
-                                                                        <input type="text" class="form-control is-valid"
-                                                                            value="Rizal Fakhri" required="">
-                                                                        <div class="valid-feedback">
-                                                                            Good job!
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Your Name</label>
-                                                                <input type="text" class="form-control is-valid"
-                                                                    value="Rizal Fakhri" required="">
-                                                                <div class="valid-feedback">
-                                                                    Good job!
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Email</label>
-                                                                <input type="email" class="form-control is-invalid"
-                                                                    required="" value="rizal@fakhri">
-                                                                <div class="invalid-feedback">
-                                                                    Oh no! Email is invalid.
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Subject</label>
-                                                                <input type="email" class="form-control">
-                                                            </div>
-                                                            <div class="form-group mb-0">
-                                                                <label>Message</label>
-                                                                <textarea class="form-control is-invalid"
-                                                                    required="">Hello, i'm handsome!</textarea>
-                                                                <div class="invalid-feedback">
-                                                                    Oh no! You entered an inappropriate word.
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-footer text-right">
-                                                            <button class="btn btn-primary">Submit</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                                    <form class="needs-validation" method="post"
+                                                        action="<?= base_url('mhs/profil/infoMhs') ?>" novalidate>
+                                                        <input type="hidden" name="id_mahasiswa"
+                                                            value="<?= $mhs['id_mahasiswa']; ?>">
+                                                        <input type="hidden"
+                                                            name="<?= $this->security->get_csrf_token_name(); ?>"
+                                                            value="<?= $this->security->get_csrf_hash(); ?>">
 
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label>Asala Sekolah</label>
+                                                                        <input type="text" name="asal_sekolah"
+                                                                            class="form-control"
+                                                                            value="<?php echo $mhs['asal_sekolah'] ?>"
+                                                                            required="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label>NISN</label>
+                                                                        <input type="text" name="nisn"
+                                                                            class="form-control"
+                                                                            value="<?php echo $mhs['nisn'] ?>"
+                                                                            required="">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label>Nama Ayah</label>
+                                                                        <input type="text" name="nama_ayah"
+                                                                            class="form-control"
+                                                                            value="<?php echo $mhs['nama_ayah'] ?>">
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label>Nama Ibu</label>
+                                                                        <input type="text" name="nama_ibu"
+                                                                            class="form-control"
+                                                                            value="<?php echo $mhs['nama_ibu'] ?>">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label>Nama Wali</label>
+                                                                        <input type="text" name="nama_wali"
+                                                                            class="form-control"
+                                                                            value="<?php echo $mhs['nama_wali'] ?>">
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label>No Telp Wali/Ortu</label>
+                                                                        <input type="number" name="hp_ortu"
+                                                                            class="form-control"
+                                                                            value="<?php echo $mhs['hp_ortu'] ?>"
+                                                                            required="">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Alamat Ortu</label>
+                                                                <input type="textarea" name="alamat_ortu"
+                                                                    class="form-control"
+                                                                    value="<?php echo $mhs['alamat_ortu'] ?>"
+                                                                    required=""></input>
+
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Kisaran Pendapatan</label> <br>
+                                                                <?php $pd = $mhs['pendapatan_ortu']; ?>
+                                                                <label><input type="radio" name="pendapatan_ortu"
+                                                                        value="Rp 500.000,00 - Rp 1.000.000,00"
+                                                                        <?php echo ($pd == 'Rp 500.000,00 - Rp 1.000.000,00') ? "checked" : ""  ?>>
+                                                                    >Rp
+                                                                    500.000,00 - Rp 1.000.000,00</label> ||
+                                                                <label><input type="radio" name="pendapatan_ortu"
+                                                                        value="Rp 1.000.000,00 - Rp 2.000.000,00"
+                                                                        <?php echo ($pd == 'Rp 1.000.000,00 - Rp 2.000.000,00') ? "checked" : "" ?>>
+                                                                    >Rp
+                                                                    1.000.000,00 - Rp 2.000.000,00</label> ||
+                                                                <label><input type="radio" name="pendapatan_ortu"
+                                                                        value="Rp 2.000.000,00 - Rp 3.500.000,00"
+                                                                        <?php echo ($pd == 'Rp 2.000.000,00 - Rp 3.500.000,00') ? "checked" : ""  ?>>
+                                                                    >Rp
+                                                                    2.000.000,00 - Rp 3.500.000,00</label> ||
+                                                                <label><input type="radio" name="pendapatan_ortu"
+                                                                        value="Rp 3.500.000,00"
+                                                                        <?php echo ($pd == 'Rp 3.500.000,00') ? "checked" : ""  ?>>
+                                                                    > Rp
+                                                                    3.500.000,00</label> ||
+
+                                                            </div>
+
+                                                            <div class="card-footer text-right">
+                                                                <button type="submit"
+                                                                    class="btn btn-primary">Simpan</button>
+                                                            </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- EndTab informasi Akademik -->
+                            <!-- Tab Identitas Sekolah -->
+                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                <div class="card-body">
+                                    <h3 class="card-header"> Informasi Akademik</h3>
+                                    <div class="row">
+                                        <div class="col-12 col-md-12">
+                                            <div class="card">
+                                                <form class="form-horizontal form" method="post"
+                                                    action="<?php echo base_url('mhs/profil/updateAksiSemester') ?>">
+                                                    <input type="hidden" name="id_mahasiswa"
+                                                        value="<?php echo $mhs['id_mahasiswa']; ?>">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label>NIM</label>
+                                                                    <input type="text" class="form-control"
+                                                                        value="<?php echo $mhs['nim'] ?>" required=""
+                                                                        disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label>Nama Mahasiswa</label>
+                                                                    <input type="text" class="form-control"
+                                                                        value="<?php echo $mhs['nama_mhs'] ?>"
+                                                                        required="" disabled>
 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label>Tahun Masuk</label>
+                                                                    <input type="text" class="form-control"
+                                                                        value="<?php echo $mhs['tahun_masuk'] ?>"
+                                                                        required="" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label>Kelas</label>
+                                                                    <input type="text" class="form-control"
+                                                                        value="<?php echo ($mhs['kelas_mhs'] == '0') ? 'Kelas Pagi' : 'Kelas Sore'; ?>"
+                                                                        required="" disabled>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label>Program Studi</label>
+                                                                    <input type="text" class="form-control"
+                                                                        value="<?php echo $mhs['jurusan'] ?>"
+                                                                        required="" disabled>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label>Semester</label>
+                                                                    <?php $p = $mhs['semester'] ?>
+                                                                    <select class="custom-select" name="semester"
+                                                                        class="form-control">
+                                                                        <option
+                                                                            <?php echo ($p == '1') ? "selected" : "" ?>>
+                                                                            1</option>
+                                                                        <option
+                                                                            <?php echo ($p == '2') ? "selected" : "" ?>>
+                                                                            2</option>
+                                                                        <option
+                                                                            <?php echo ($p == '3') ? "selected" : "" ?>>
+                                                                            3</option>
+                                                                        <option
+                                                                            <?php echo ($p == '4') ? "selected" : "" ?>>
+                                                                            4</option>
+                                                                        <option
+                                                                            <?php echo ($p == '5') ? "selected" : "" ?>>
+                                                                            5</option>
+                                                                        <option
+                                                                            <?php echo ($p == '6') ? "selected" : "" ?>>
+                                                                            6</option>
+                                                                        <option
+                                                                            <?php echo ($p == '7') ? "selected" : "" ?>>
+                                                                            7</option>
+                                                                        <option
+                                                                            <?php echo ($p == '8') ? "selected" : "" ?>>
+                                                                            8</option>
+                                                                        <option
+                                                                            <?php echo ($p == '7') ? "selected" : "" ?>>
+                                                                            7</option>
+                                                                        <option
+                                                                            <?php echo ($p == '8') ? "selected" : "" ?>>
+                                                                            8</option>
+                                                                        <option
+                                                                            <?php echo ($p == '7') ? "selected" : "" ?>>
+                                                                            9</option>
+                                                                        <option
+                                                                            <?php echo ($p == '8') ? "selected" : "" ?>>
+                                                                            10</option>
+                                                                        <option
+                                                                            <?php echo ($p == '7') ? "selected" : "" ?>>
+                                                                            11</option>
+                                                                        <option
+                                                                            <?php echo ($p == '8') ? "selected" : "" ?>>
+                                                                            12</option>
+                                                                        <option
+                                                                            <?php echo ($p == '7') ? "selected" : "" ?>>
+                                                                            13</option>
+                                                                        <option
+                                                                            <?php echo ($p == '8') ? "selected" : "" ?>>
+                                                                            14</option>
+
+
+                                                                    </select>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Dosen Pembimbing</label>
+                                                            <input type="text" class="form-control"
+                                                                value="<?php echo $mhs['nama_dosen'] ?>" required=""
+                                                                disabled>
+
+                                                        </div>
+
+                                                        <div class="card-footer text-right">
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Simpan</button>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
+
                 </div>
+
             </div>
-
         </div>
-
-        <h2 class="section-title">Hi,
-            <?ph
-p echo $mhs['nama_mhs']?>
-        </h2>
-        <p class="section-lead">
-            <!-- Change information about yourself on this page. -->
-        </p>
+</div>
+</div>
+</div>
 </div>
 </section>
 
@@ -415,4 +554,19 @@ p echo $mhs['nama_mhs']?>
 
 
 
+
+
+
+
+
+
+
+<script src="path/to/jquery.min.js"></script>
+<script src="path/to/bootstrap.min.js"></script>
+<script src="path/to/bootstrap-password-strength-meter.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.pwstrength').pwstrength();
+});
+</script>
 <?php $this->load->view('mhs/dist/footer'); ?>

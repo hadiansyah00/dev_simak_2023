@@ -11,6 +11,7 @@ class Evaluasi_mhs extends CI_Controller
 		//url security
 		$this->ModelSecurity->getSecurity();
 		$this->load->model('EdomModel');
+		$this->ModelSecurity->getCsrf();
 	}
 
 	public function index()

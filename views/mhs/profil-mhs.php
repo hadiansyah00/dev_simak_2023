@@ -305,9 +305,6 @@ body {
 
 </div>
 
-
-
-
 <!-- Modal identitas-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -342,12 +339,6 @@ body {
                         </div>
                     </div>
 
-                    <!--<div class="form-group">-->
-                    <!--	<label class="col-sm-5 control-label no-padding-right" for="form-field-1"> Nama Kepanjangan</label>-->
-                    <!--	<div class="col-sm-12">-->
-                    <!--		<input type="text" name="nama_kepanjangan" value="<?//php echo $mhs['nama_kepanjangan']; ?>" class="form-control" required="">-->
-                    <!--	</div>-->
-                    <!--</div>-->
                     <div class="form-group">
                         <label class="col-sm-5 control-label no-padding-right" for="form-field-1"> Agama </label>
 
