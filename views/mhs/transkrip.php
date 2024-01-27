@@ -1,65 +1,67 @@
 <div class="static-table-area mg-b-15">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-4">
-				<br>
-				<img style="width: 70px;" src="<?php echo base_url('assets/img/logo_sbh.png'); ?>">
-			</div>
-			<div class="box-body col-md-5">
-				<table class="table">
-					<tbody>
-						<tr>
-							<th>NIM</th>
-							<td> : </td>
-							<td><?php echo $mhs['nim']; ?></td>
-						</tr>
-						<tr>
-							<th>Nama</th>
-							<td> : </td>
-							<td><?php echo $mhs['nama_mhs']; ?></td>
-						</tr>
-						<tr>
-							<th>Jurusan</th>
-							<td> : </td>
-							<td><?php echo $mhs['jurusan']; ?></td>
-						</tr>
-					</tbody>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <br>
+                <img style="width: 70px;" src="<?php echo base_url('assets/img/logo_sbh.png'); ?>">
+            </div>
+            <div class="box-body col-md-5">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>NIM</th>
+                            <td> : </td>
+                            <td><?php echo $mhs['nim']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Nama</th>
+                            <td> : </td>
+                            <td><?php echo $mhs['nama_mhs']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Jurusan</th>
+                            <td> : </td>
+                            <td><?php echo $mhs['jurusan']; ?></td>
+                        </tr>
+                    </tbody>
 
-				</table>
-			</div>
-			
-		</div>
-		<?php error_reporting(0); ?>
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="sparkline10-list shadow-reset mg-t-30">
-					<div class="sparkline10-hd">
-						<div class="main-sparkline10-hd">
-							<h1>Semester 1</h1>
-							<div class="sparkline10-outline-icon">
-								<span class="sparkline10-collapse-link"><i class="fa fa-chevron-up"></i></span>
-								<span class="sparkline10-collapse-close"><i class="fa fa-times"></i></span>
-							</div>
-						</div>
-					</div>
+                </table>
+            </div>
 
-					<div class="sparkline10-graph">
-						<div class="static-table-list">
-							<table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="dynamic-table_info">
-								<thead>
-									<tr>
-										<td>No</td>
-										<td>Kode</td>
-										<td>Matakuliah</td>
-										<td>SKS</td>
-								        	<td>SMT</td>
-										<td>Angka Mutu</td>
-										<td>Bobot</td>
+        </div>
+        <?php error_reporting(0); ?>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="sparkline10-list shadow-reset mg-t-30">
+                    <div class="sparkline10-hd">
+                        <div class="main-sparkline10-hd">
+                            <h1>Semester 1</h1>
+                            <div class="sparkline10-outline-icon">
+                                <span class="sparkline10-collapse-link"><i class="fa fa-chevron-up"></i></span>
+                                <span class="sparkline10-collapse-close"><i class="fa fa-times"></i></span>
+                            </div>
+                        </div>
+                    </div>
 
-									</tr>
-								</thead>
-								<tbody>
-									<?php
+                    <div class="sparkline10-graph">
+                        <div class="static-table-list">
+                            <table id="dynamic-table"
+                                class="table table-striped table-bordered table-hover dataTable no-footer" role="grid"
+                                aria-describedby="dynamic-table_info">
+                                <thead>
+                                    <tr>
+                                        <td>No</td>
+                                        <td>Kode</td>
+                                        <td>Matakuliah</td>
+                                        <td>SKS</td>
+                                        <td>SMT</td>
+                                        <td>Angka Mutu</td>
+                                        <td>Bobot</td>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
 									$i = 1;
 									$sks = 0;
 									$sks2 = 0;
@@ -67,17 +69,17 @@
 									  
 										$sks = $sks + $vi->sks;
 										$sks2 =$sks2 + $vi->sks; ?>
-									
-											<tr>
-												<td><?php echo $i++; ?></td>
-												<td><?php echo $vi->kd_mk; ?></td>
-												<td><?php echo $vi->matakuliah; ?></td>
-												<td><?php echo $vi->sks; ?></td>
-												<td><?php echo $vi->nilai_uts; ?></td>
-												<td><?php echo $vi->smt; ?></td>
-												<td><?php echo $vi->nilai; ?></td>
-												<td>
-													<?php
+
+                                    <tr>
+                                        <td><?php echo $i++; ?></td>
+                                        <td><?php echo $vi->kd_mk; ?></td>
+                                        <td><?php echo $vi->matakuliah; ?></td>
+                                        <td><?php echo $vi->sks; ?></td>
+                                        <td><?php echo $vi->nilai_uts; ?></td>
+                                        <td><?php echo $vi->smt; ?></td>
+                                        <td><?php echo $vi->nilai; ?></td>
+                                        <td>
+                                            <?php
 													if ($vi->nilai == 'A') {
 														echo $bobot = 4.00;
 													} elseif ($vi->nilai == 'AB') {
@@ -98,9 +100,9 @@
 														echo $bobot = 0;
 													}
 													?>
-												</td>
-												<td>
-													<?php
+                                        </td>
+                                        <td>
+                                            <?php
 
 													if ($vi->nilai == 'A') {
 														echo $bobot2 = $vi->sks * 4.00;
@@ -122,33 +124,34 @@
 														echo $bobot2 = 0;
 													}
 													?>
-												</td>
-											</tr>
-								</tbody>
-								<?php
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <?php
 											$tot_bobot1 = $vi->sks * $bobot;
 											$grand_tot1 = $grand_tot1 + $tot_bobot1;
 								?>
-							<?php } ?>
+                                <?php } ?>
 
-							<tr>
+                                <tr>
 
-								<th colspan="8" align="center">Jumlah SKS x AM </th>
-								<th><strong><?php echo $grand_tot1; ?></strong></th>
-							</tr>
-							<tr>
+                                    <th colspan="8" align="center">Jumlah SKS x AM </th>
+                                    <th><strong><?php echo $grand_tot1; ?></strong></th>
+                                </tr>
+                                <tr>
 
-								<th colspan="8" align="center">Jumlah SKS </th>
-								<th><strong><?php echo $sks; ?></strong></th>
-							</tr>
-							<tr>
+                                    <th colspan="8" align="center">Jumlah SKS </th>
+                                    <th><strong><?php echo $sks; ?></strong></th>
+                                </tr>
+                                <tr>
 
-								<th colspan="8" align="center"> IPS </th>
-								<th><strong> <?php echo number_format($hasil=$grand_tot1 / $sks, 2); ?></strong></th>
-							</tr>
-								<tr>
-								<th colspan="8" align="center"> Dengan Predikat </th>
-								<th><strong> <?php  
+                                    <th colspan="8" align="center"> IPS </th>
+                                    <th><strong> <?php echo number_format($hasil=$grand_tot1 / $sks, 2); ?></strong>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="8" align="center"> Dengan Predikat </th>
+                                    <th><strong> <?php  
 								 if ($hasil >= 3.51 && $hasil <= 4.00) {
                                         echo "Dengan Pujian";
                                     }
@@ -169,39 +172,40 @@
                                     }
 								
 								?></strong></th>
-							</tr>
-							</table>
-						</div>
-					</div>
-					
-												<!-- Batas Suci Antar Semester  -->
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
 
-											</div>
+                    <!-- Batas Suci Antar Semester  -->
 
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<br></br>
-		<p>
-			<b>&nbsp;&nbsp;Total SKS : <?php echo $sks2; ?></b>
-		</p>
-		<p>
-		    
-		    <b>
-		        &nbsp;&nbsp;IPK : 	<?php echo number_format (($hasil_tot = 
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br></br>
+<p>
+    <b>&nbsp;&nbsp;Total SKS : <?php echo $sks2; ?></b>
+</p>
+<p>
+
+    <b>
+        &nbsp;&nbsp;IPK :
+        <?php echo number_format (($hasil_tot = 
 		        $grand_tot1 + $grand_tot2 + $grand_tot3 + $grand_tot4 + $grand_tot5 + $grand_tot6 + $grand_tot7 + $grand_tot8) / $sks2, 2 ); ?>
 
-		    </b>
-<br>
-<b>&nbsp;&nbsp;Dengan Predikat :
+    </b>
+    <br>
+    <b>&nbsp;&nbsp;Dengan Predikat :
 
-    	 <?php
+        <?php
     	
 								 if ($hasil_tot >= 3.51 && $hasil_tot <= 4.00) {
                                         echo "Dengan Pujian";
@@ -223,10 +227,10 @@
                                     }
 								
 								?>
-							</tr>
-</b>
-			
-		</p>
-	</div>
+        </tr>
+    </b>
+
+</p>
+</div>
 
 </div>

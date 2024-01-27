@@ -34,9 +34,9 @@ class Transkrip extends CI_Controller
 		$data['viewKrs'] = $this->KrsModel->viewAll($mhs['id_mahasiswa'], $ta['id_ta']);
 		//$data['viewKrs2'] = $this->KrsModel->viewAll($mhs['id_mahasiswa']);
 
-		$this->load->view('mhs/templates/header', $data);
-		$this->load->view('mhs/transkrip', $data);
-		$this->load->view('mhs/templates/footer');
+		// $this->load->view('mhs/templates/header', $data);
+		$this->load->view('mhs/khs/transkrip-st', $data);
+		// $this->load->view('mhs/templates/footer');
 	}
 
 // 	public function print($id_mhs)

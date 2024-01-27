@@ -23,7 +23,7 @@ class Home extends CI_Controller
 		$data['post'] = $this->db->get('post')->row_array();
 		$data['slider'] = $this->db->get('img_slider')->result();
 
-		
+		$data['tahun'] = $this->TaModel->getAktif()->row_array();
 		$this->load->view('mhs/dashboard_mhs', $data);
 	
 	}

@@ -52,6 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['admin/kurikulum'] = 'admin/kurikulum/index';
+$route['admin/kurikulum/insert/(:any)'] = 'admin/kurikulum/insert/$1';
 
 $route['evaluasi_mhs/mulai/(:num)/(:num)'] = 'Evaluasi_mhs/mulai/$1/$2';
 $route['evaluasi_mhs/simpan'] = 'Evaluasi_mhs/simpan';

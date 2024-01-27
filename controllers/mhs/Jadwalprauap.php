@@ -31,9 +31,9 @@ class Jadwalprauap extends CI_Controller
 		//tampil data KRS berdasarkan sessi login mhs
 		$data['viewKrs'] = $this->KrsModel->viewKrs($mhs['id_mahasiswa'], $ta['id_ta']);
 
-		$this->load->view('mhs/templates/header', $data);
-		$this->load->view('mhs/jadwal_pra_uap', $data);
-		$this->load->view('mhs/templates/footer');
+		// $this->load->view('mhs/templates/header', $data);
+		$this->load->view('mhs/jadwal/jadwal_pra_uap-st', $data);
+		// $this->load->view('mhs/templates/footer');
 	}
 
     public function print_pra_uap($data)

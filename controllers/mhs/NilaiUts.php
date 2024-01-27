@@ -30,8 +30,8 @@ class NilaiUts extends CI_Controller
 		//tampil data KRS berdasarkan sessi login mhs
 		$data['viewKrs'] = $this->KrsModel->viewKrs($mhs['id_mahasiswa'], $ta['id_ta']);
 
-		$this->load->view('mhs/templates/header', $data);
-		$this->load->view('mhs/nilai_uts', $data);
-		$this->load->view('mhs/templates/footer');
+		// $this->load->view('mhs/templates/header', $data);
+		$this->load->view('mhs/nilai/nilai-uts-st', $data);
+		// $this->load->view('mhs/templates/footer');
 	}
 }

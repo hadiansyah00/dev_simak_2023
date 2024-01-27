@@ -26,7 +26,9 @@ $this->load->view('mhs/dist/header');
 
                             <div class="card-header-form">
 
-
+                                <a href="#" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i>
+                                    Cetak
+                                    KHS</a>
                             </div>
                         </div>
                         <div class="card-body p-0">
@@ -41,10 +43,7 @@ $this->load->view('mhs/dist/header');
                                         <th>AM</th>
                                         <th rowspan=" 2"> SKS X AM </th>
                                         <th>Nama Dosen 1</th>
-                                        <th>Edom Dosen 1</th>
                                         <th>Nama Dosen 2</th>
-                                        <th>Edom Dosen 2</th>
-
                                     </tr>
                                     <tbody align="text-center">
                                         <?php
@@ -142,10 +141,10 @@ $this->load->view('mhs/dist/header');
 										
 										?>
                                             <?php
-                                    // Misalnya, jika $row->id_perdos == 0, maka link akan dinonaktifkan
-                                    $link_kuesioner = ($row->id_perdos == 0) ? 'javascript:void(0);' : $link_kuesioner;
-                                    $link_kuesioner_2 = ($row->id_peran == 0) ? 'javascript:void(0);' : $link_kuesioner_2;
-                             	   ?>
+                                 	   // Misalnya, jika $row->id_perdos == 0, maka link akan dinonaktifkan
+											$link_kuesioner = ($row->id_perdos == 0) ? 'javascript:void(0);' : $link_kuesioner;
+											$link_kuesioner_2 = ($row->id_peran == 0) ? 'javascript:void(0);' : $link_kuesioner_2;
+                             			   ?>
 
                                             <td>
                                                 <p>
@@ -153,12 +152,7 @@ $this->load->view('mhs/dist/header');
                                                         <?= $row->status_edom_1 == 1 ? '<i class="fas fa-check-circle text-success"> </i>' . '&nbsp;'. $dosen1 : '' .$dosen1 ?>
                                                     </strong>
                                                 </p>
-
-                                            </td>
-                                            <td>
-                                                <?= ($row->status_edom_2 == 1 && $row->id_perdos != 0 && $row->id_peran != 0) ? '<i class="fas fa-check-circle text-success"></i>' : '' ?>
-
-
+                                                <?= ($row->status_edom_2 == 1 && $row->id_perdos != 0 && $row->id_peran != 0) ? '' : '' ?>
                                                 <?php if ($row->status_edom_1 == 0 || $row->status_edom_1 === null): ?>
                                                 <a class="btn btn-sm btn-success <?php echo ($row->id_perdos == 0) ? 'disabled' : ''; ?>"
                                                     href="<?php echo $link_kuesioner; ?>">
@@ -172,27 +166,20 @@ $this->load->view('mhs/dist/header');
                                                         <?= $row->status_edom_2 == 1 ? '<i class="fas fa-check-circle text-success"> </i>' . '&nbsp;'. $dosen2 : '' .$dosen2 ?>
                                                     </strong>
                                                 </p>
-                                            </td>
-
-                                            <td>
-                                                <?= ($row->status_edom_2 == 1 && $row->id_perdos != 0 && $row->id_peran != 0) ? '<i class="fas fa-check-circle text-success"></i>' : '' ?>
-
-                                                <?php if ($row->status_edom_1 == 0 || $row->status_edom_1 === null): ?>
+                                                <?= ($row->status_edom_2 == 1 && $row->id_perdos != 0 && $row->id_peran != 0) ? '' : '' ?>
+                                                <?php if ($row->status_edom_2 == 0 || $row->status_edom_1 === null): ?>
                                                 <a class="btn btn-sm btn-success <?php echo ($row->id_peran == 0) ? 'disabled' : ''; ?>"
                                                     href="<?php echo $link_kuesioner_2; ?>">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
                                                 <?php endif; ?>
                                             </td>
-
-
                                         </tr>
 
                                         <?php
-					$tot_bobot = $row->sks * $bobot;
-				    $grand_tot = $grand_tot + $tot_bobot;
-
-								?>
+										$tot_bobot = $row->sks * $bobot;
+										$grand_tot = $grand_tot + $tot_bobot;
+										?>
                                         <?php } ?>
                                         <?php } ?>
                                         <?php } ?>

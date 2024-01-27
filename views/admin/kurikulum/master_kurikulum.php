@@ -6,137 +6,140 @@
             <div class="col-md-1">
                 <img style="width: 70px;" src="<?php echo base_url('assets/img/logo_sbh.png'); ?>">
             </div>
-            <div class="box-body col-md-5">
-                <table class="table">
-                    <tbody>
-                        <?php foreach ($detil as $row) : ?>
-                        <tr>
-                            <th>Kode Jurusan</th>
-                            <td> : </td>
-                            <td><?php echo $row->kd_jurusan; ?> - <?php echo $row->singkat; ?></td>
-                        </tr>
-                        <tr>
-                            <th>Jurusan</th>
-                            <td> : </td>
-                            <td><?php echo $row->jenjang; ?> - <?php echo $row->jurusan; ?></td>
-                        </tr>
-                        <?php endforeach; ?>
-                        <tr>
-                            <th>Tahun Akademik</th>
-                            <td> : </td>
-                            <td><?php echo $tahun['ta']; ?> / <?php echo $tahun['semester']; ?></td>
-                        </tr>
-                    </tbody>
 
-                </table>
+            <div class="form-group-inner">
+                <div class="box-body col-md-5">
+                    <table class="table">
+                        <tbody>
+                            <?php foreach ($detil as $row) : ?>
+                            <tr>
+                                <th>Kode Jurusan</th>
+                                <td> : </td>
+                                <td><?php echo $row->kd_jurusan; ?> - <?php echo $row->singkat; ?></td>
+                            </tr>
+                            <tr>
+                                <th>Jurusan</th>
+                                <td> : </td>
+                                <td><?php echo $row->jenjang; ?> - <?php echo $row->jurusan; ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                            <tr>
+                                <th>Tahun Akademik</th>
+                                <td> : </td>
+                                <td><?php echo $tahun['ta']; ?> / <?php echo $tahun['semester']; ?></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <?php echo $this->session->flashdata('pesan'); ?>
+            <?php echo $this->session->flashdata('pesan'); ?>
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="sparkline8-list shadow-reset">
-                    <div class="sparkline8-hd">
-                        <div class="main-sparkline8-hd">
-                            <h1>Tabel Matakuliah</h1>
-                            <div class="sparkline8-outline-icon">
-                                <span title="Tambah Data Kurikulum"><a class="btn-sm btn-primary"
-                                        class="Primary mg-b-10" href="#" data-toggle="modal"
-                                        data-target="#PrimaryModalhdbgcl"><i class="fa fa-plus"></i></a>
-                                </span>
-                                <span title="Refresh"><a href="<?php echo base_url('admin/Kurikulum'); ?>"
-                                        class="btn-sm btn-warning"><i class="fa fa-backward"></i></a>
-                                </span>
-                                <span title="Hide Table" class="sparkline8-collapse-link"><i
-                                        class="fa fa-chevron-up"></i></span>
-                                <span title="Close Table" class="sparkline8-collapse-close"><i
-                                        class="fa fa-times"></i></span>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sparkline8-list shadow-reset">
+                        <div class="sparkline8-hd">
+                            <div class="main-sparkline8-hd">
+                                <h1>Tabel Matakuliah</h1>
+                                <div class="sparkline8-outline-icon">
+                                    <span title="Tambah Data Kurikulum"><a class="btn-sm btn-primary"
+                                            class="Primary mg-b-10" href="#" data-toggle="modal"
+                                            data-target="#PrimaryModalhdbgcl"><i class="fa fa-plus"></i></a>
+                                    </span>
+                                    <span title="Refresh"><a href="<?php echo base_url('admin/Kurikulum'); ?>"
+                                            class="btn-sm btn-warning"><i class="fa fa-backward"></i></a>
+                                    </span>
+                                    <span title="Hide Table" class="sparkline8-collapse-link"><i
+                                            class="fa fa-chevron-up"></i></span>
+                                    <span title="Close Table" class="sparkline8-collapse-close"><i
+                                            class="fa fa-times"></i></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="sparkline8-graph">
-                        <div class="datatable-dashv1-list custom-datatable-overright">
-                            <table id="table" data-toggle="table" data-pagination="true" data-search="true"
-                                data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true"
-                                data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                data-cookie-id-table="saveId" data-show-export="true" data-toolbar="#toolbar">
-                                <thead>
-                                    <tr>
-                                        <th data-field="no">No</th>
-                                        <th data-field="tahun akademik">Tahun Akademik</th>
-                                        <th data-field="kd_mk">Kode MK</th>
-                                        <th data-field="matakuliah">Matakuliah</th>
-                                        <th data-field="semester">Semester</th>
-                                        <th data-field="sks">SKS</th>
-                                        <th data-field="">Dosen Pengampuh</th>
+                        <div class="sparkline8-graph">
+                            <div class="datatable-dashv1-list custom-datatable-overright">
+                                <table id="table" data-toggle="table" data-pagination="true" data-search="true"
+                                    data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true"
+                                    data-key-events="true" data-show-toggle="true" data-resizable="true"
+                                    data-cookie="true" data-cookie-id-table="saveId" data-show-export="true"
+                                    data-toolbar="#toolbar">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="no">No</th>
+                                            <th data-field="tahun akademik">Tahun Akademik</th>
+                                            <th data-field="kd_mk">Kode MK</th>
+                                            <th data-field="matakuliah">Matakuliah</th>
+                                            <th data-field="semester">Semester</th>
+                                            <th data-field="sks">SKS</th>
+                                            <th data-field="">Dosen Pengampuh</th>
 
-                                        <?php $btn = $this->db->get('set_krs')->row_array();
+                                            <?php $btn = $this->db->get('set_krs')->row_array();
 										if ($btn['hide_btn_del'] == 0) {
 										} else { ?>
-                                        <th>Aksi</th>
-                                        <?php } ?>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $i = 1;
+                                            <th>Aksi</th>
+                                            <?php } ?>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $i = 1;
 									foreach ($kurikulum as $row) { ?>
-                                    <?php if ($row->semester == $tahun['semester']) { ?>
-                                    <?php if ($row->status == $tahun['status']) { ?>
-                                    <tr>
-                                        <td><?php echo $i++; ?></td>
+                                        <?php if ($row->semester == $tahun['semester']) { ?>
+                                        <?php if ($row->status == $tahun['status']) { ?>
+                                        <tr>
+                                            <td><?php echo $i++; ?></td>
 
-                                        <td><?php echo $row->ta; ?></td>
-                                        <td><?php echo $row->kd_mk; ?></td>
-                                        <td><?php echo $row->matakuliah; ?></td>
-                                        <td><?php echo $row->smt; ?></td>
-                                        <td><?php echo $row->id_kurikulum; ?></td>
+                                            <td><?php echo $row->ta; ?></td>
+                                            <td><?php echo $row->kd_mk; ?></td>
+                                            <td><?php echo $row->matakuliah; ?></td>
+                                            <td><?php echo $row->smt; ?></td>
+                                            <td><?php echo $row->id_kurikulum; ?></td>
 
 
 
-                                        <td>
-                                            <?php
+                                            <td>
+                                                <?php
                      								   // Di sini kita dapat menambahkan kode untuk mengambil nama dosen berdasarkan $row->id_dosen
 														$dosen = $this->KurikulumModel->getDosenNameById_peran($row->id_perdos);
 														echo $dosen;
 														?>
-                                            <br>
-                                            <hr>
-                                            <?php
+                                                <br>
+                                                <hr>
+                                                <?php
                      								   // Di sini kita dapat menambahkan kode untuk mengambil nama dosen berdasarkan $row->id_dosen
 														$dosen = $this->KurikulumModel->getDosenNameById($row->id_peran);
 														echo $dosen;
 														?>
 
-                                        </td>
+                                            </td>
 
-                                        <?php $btn = $this->db->get('set_krs')->row_array();
+                                            <?php $btn = $this->db->get('set_krs')->row_array();
 												if ($btn['hide_btn_del'] == 0) {
 												} else { ?>
-                                        <td>
-                                            <a class="btn-sm btn-danger"
-                                                href="<?php echo base_url('admin/Kurikulum/delete/' . $row->id_kurikulum); ?>"
-                                                onclick="return confirm('Yakin Akan Di Hapus??');"><i
-                                                    class="fa fa-trash"></i></a>
-                                        </td>
+                                            <td>
+                                                <a class="btn-sm btn-danger"
+                                                    href="<?php echo base_url('admin/Kurikulum/delete/' . $row->id_kurikulum); ?>"
+                                                    onclick="return confirm('Yakin Akan Di Hapus??');"><i
+                                                        class="fa fa-trash"></i></a>
+                                            </td>
+                                            <?php } ?>
+                                        </tr>
                                         <?php } ?>
-                                    </tr>
-                                    <?php } ?>
-                                    <?php } ?>
+                                        <?php } ?>
 
 
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Data table area End-->
+    <!-- Data table area End-->
 
 
 
@@ -147,90 +150,92 @@
 
 
 
-<div id="PrimaryModalhdbgcl"
-    class="modal modal-adminpro-general fullwidth-popup-InformationproModal fade bounceInDown animated in" role="dialog"
-    style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header header-color-modal bg-color-1">
-                <h4 class="modal-title">Form Tambah Kurikulum</h4>
-                <div class="modal-close-area modal-close-df">
-                    <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+    <div id="PrimaryModalhdbgcl"
+        class="modal modal-adminpro-general fullwidth-popup-InformationproModal fade bounceInDown animated in"
+        role="dialog" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header header-color-modal bg-color-1">
+                    <h4 class="modal-title">Form Tambah Kurikulum</h4>
+                    <div class="modal-close-area modal-close-df">
+                        <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="all-form-element-inner">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="all-form-element-inner">
 
-                            <?php foreach ($detil as $row) { ?>
-                            <form action="<?php echo base_url('admin/Kurikulum/insert/' . $row->kd_jurusan . '/'); ?>"
-                                method="post">
-                                <?php } ?>
-
-
-                                <div class="form-group-inner">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <label class="login2 pull-left pull-left-pro">Dosen</label>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <select name="matkul" id="matkul" class="form-control">
-                                                <option> --Pilih Matakuliah-- </option>
-                                                <?php
+                                <?php foreach ($detil as $row) { ?>
+                                <form
+                                    action="<?php echo base_url('admin/Kurikulum/insert/' . $row->kd_jurusan . '/'); ?>"
+                                    method="post">
+                                    <?php } ?>
+                                    <?php echo form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label class="login2 pull-left pull-left-pro">Dosen</label>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <select name="matkul" id="matkul" class="form-control">
+                                                    <option> --Pilih Matakuliah-- </option>
+                                                    <?php
 												foreach ($matkul as $row) { ?>
-                                                <?php if ($row->semester == $tahun['semester']) { ?>
-                                                <option value="<?php echo $row->kd_mk; ?>">SMT <?php echo $row->smt; ?>
-                                                    - <?php echo $row->kd_mk; ?> - <?php echo $row->matakuliah; ?> - SKS
-                                                    <?php echo $row->sks; ?></option>
-                                                <?php } ?>
-                                                <?php } ?>
-                                            </select>
+                                                    <?php if ($row->semester == $tahun['semester']) { ?>
+                                                    <option value="<?php echo $row->kd_mk; ?>">SMT
+                                                        <?php echo $row->smt; ?>
+                                                        - <?php echo $row->kd_mk; ?> - <?php echo $row->matakuliah; ?> -
+                                                        SKS
+                                                        <?php echo $row->sks; ?></option>
+                                                    <?php } ?>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group-inner">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <label class="login2 pull-left pull-left-pro">Dosen 1</label>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <select name="peran" class="form-control">
-                                                <option value="0"> --Dosen Pengajar 1-- </option>
-                                                <?php
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label class="login2 pull-left pull-left-pro">Dosen 1</label>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <select name="peran" class="form-control">
+                                                    <option value="0"> --Dosen Pengajar 1-- </option>
+                                                    <?php
 												
 												foreach ($dosen_1 as $ds) : ?>
-                                                <option value="<?php echo $ds->id_peran; ?>">
-                                                    <?php echo $ds->nama_dosen; ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                            
+                                                    <option value="<?php echo $ds->id_peran; ?>">
+                                                        <?php echo $ds->nama_dosen; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group-inner">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <label class="login2 pull-left pull-left-pro">Dosen 2</label>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <select name="perdos" class="form-control">
-                                                <option value="0"> --Dosen Pengajar 2-- </option>
-                                                <?php
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label class="login2 pull-left pull-left-pro">Dosen 2</label>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <select name="perdos" class="form-control">
+                                                    <option value="0"> --Dosen Pengajar 2-- </option>
+                                                    <?php
 												
 												foreach ($dosen_2 as $sd) : ?>
-                                                <option value="<?php echo $sd->id_perdos; ?>">
-                                                    <?php echo $sd->nama_dosen; ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
+                                                    <option value="<?php echo $sd->id_perdos; ?>">
+                                                        <?php echo $sd->nama_dosen; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
 
 
-                                <!-- <div class="form-group-inner">
+                                    <!-- <div class="form-group-inner">
 									<div class="row">
 										<div class="col-lg-4">
 											<label class="login2 pull-left pull-left-pro">Hari</label>
@@ -249,7 +254,7 @@
 								</div> -->
 
 
-                                <!-- <div class="form-group-inner">
+                                    <!-- <div class="form-group-inner">
 									<div class="row">
 										<div class="col-lg-4">
 											<label class="login2 pull-left pull-left-pro">Jam</label>
@@ -276,7 +281,7 @@
 									</div>
 								</div> -->
 
-                                <!-- <div class="form-group-inner">
+                                    <!-- <div class="form-group-inner">
 									<div class="row">
 										<div class="col-lg-4">
 											<label class="login2 pull-left pull-left-pro">Hari ke-2</label>
@@ -293,7 +298,7 @@
 										</div>
 									</div>
 								</div> -->
-                                <!-- <div class="form-group-inner">
+                                    <!-- <div class="form-group-inner">
 									<div class="row">
 										<div class="col-lg-4">
 											<label class="login2 pull-left pull-left-pro">Jam ke-2</label>
@@ -320,27 +325,60 @@
 									</div>
 								</div> -->
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4">
+                            <a href="#" data-dismiss="modal" class="btn btn-warning"><i class="fa fa-refresh"></i>
+                                Batal</a>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                        </div>
+                        <div class="col-lg-4">
+                        </div>
                     </div>
-                    <div class="col-lg-4">
-                        <a href="#" data-dismiss="modal" class="btn btn-warning"><i class="fa fa-refresh"></i> Batal</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
-                    </div>
-                    <div class="col-lg-4">
-                    </div>
+                    <br><br>
+
                 </div>
-                <br><br>
-            </div>
 
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+    <script>
+    $(document).ready(function() {
+        // Ambil CSRF Token dari input tersembunyi
+        var csrfToken = $('[name="csrf_token"]').val();
+
+        // Tambahkan CSRF Token pada setiap permintaan AJAX
+        $.ajaxSetup({
+            data: {
+                csrf_token: csrfToken
+            }
+        });
+
+        // Tangkap acara pengiriman formulir
+        $('form').submit(function(e) {
+            e.preventDefault(); // Mencegah formulir dikirim secara tradisional
+
+            // Kirim formulir menggunakan AJAX
+            $.ajax({
+                url: 'url_target',
+                type: 'POST',
+                data: $(this).serialize(), // Serialize formulir
+                success: function(response) {
+                    // Handle respons
+                },
+                error: function(error) {
+                    // Handle error
+                }
+            });
+        });
+    });
+    </script>

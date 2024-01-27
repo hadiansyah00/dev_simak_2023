@@ -14,7 +14,9 @@ $this->load->view('mhs/dist/header');
             <div class="hero text-white hero-bg-image hero-bg-parallax"
                 style="background-image: url('<?php echo base_url(); ?>assets-new-look/img/bag-hero-1.jpg');">
                 <div class="hero-inner">
-                    <h2>Selamat Datang, <?php echo $mhs['nama_mhs']?></h2>
+                    <h1>Selamat Datang, <?php echo $mhs['nama_mhs']?></h1>
+                    <h4> Tahun Akademik <?php echo $tahun['ta'] ?> /
+                        <?php echo$tahun['semester']?></h4>
                     <p class="lead"><strong>SISTEM INFORMASI AKADEMIK | STIKES BOGOR HUSADA</strong></p></br>
 
 
@@ -25,19 +27,22 @@ $this->load->view('mhs/dist/header');
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md6-col-lg-5">
-                        <h6><strong>Program Studi</strong> <?php echo $mhs['jurusan']?></h6>
-                        <h6><strong>Semester</strong> <?php echo $mhs['semester']?></h6>
-                    </div>
 
-                </div>
-            </div>
         </div>
+
 </div>
+
 </section>
+
+
+
+
+</div>
 
 </div>
 
 <?php $this->load->view('mhs/dist/footer'); ?>
+
+<!-- Page Specific JS File -->
+
+<script src="http://localhost/stisla-codeigniter-master/assets/js/page/bootstrap-modal.js"></script>

@@ -31,8 +31,8 @@ class Administrasi extends CI_Controller
 		//tampil pembayaran mahasiswa
 		$data['viewAdm'] = $this->PembayaranModel->viewAdm($mhs['id_mahasiswa'], $ta['id_ta']);
 
-		$this->load->view('mhs/templates/header', $data);
-		$this->load->view('mhs/administrasi', $data);
-		$this->load->view('mhs/templates/footer');
+		// $this->load->view('mhs/templates/header', $data);
+		$this->load->view('mhs/adm/administrasi-st', $data);
+		// $this->load->view('mhs/templates/footer');
 	}
 }

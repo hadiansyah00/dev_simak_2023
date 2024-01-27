@@ -6,11 +6,11 @@ $this->load->view('mhs/dist/header');
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Lihat KRS (Kartu Rencana Studi)</h1>
+            <h1>Nilai UAS</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="#">Akademik</a></div>
-                <div class="breadcrumb-item">Lihat KRS</div>
+                <div class="breadcrumb-item">Nilai UAS</div>
             </div>
         </div>
 
@@ -26,15 +26,12 @@ $this->load->view('mhs/dist/header');
 
                             <div class="card-header-form">
 
-                                <a href="<?php echo base_url('mhs/Transkrip/printKRS/' . $mhs['id_mahasiswa']); ?>"
-                                    target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> BAAK</a>
-                                &nbsp;
-                                <a href="<?php echo base_url('mhs/Transkrip/printKRS_kapro/' . $mhs['id_mahasiswa']); ?>"
-                                    target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i>
-                                    KAPRODI</a>&nbsp;
-                                <a href="<?php echo base_url('mhs/Transkrip/printKRS_dospem/' . $mhs['id_mahasiswa']); ?>"
-                                    target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i>
-                                    DOSPEM</a>&nbsp;
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
 
                                 </form>
                             </div>
@@ -43,33 +40,32 @@ $this->load->view('mhs/dist/header');
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <tr>
-                                        <th>No</th>
-                                        <th>Kode</th>
-                                        <th>Matakuliah</th>
-                                        <th>SKS</td>
-                                        <th>Semester</td>
-                                        <th>Aksi KRS</td>
+                                        <th align="center" rowspan="2" align="center">NO</th>
+                                        <th rowspan="2">KODE</th>
+                                        <th rowspan="2">MATAKULIAH</th>
+                                        <th rowspan="2">SKS</th>
+                                        <th rowspan="2">Nilai</th>
                                     </tr>
                                     <tbody>
                                         <?php
-										$i = 1;
-										foreach ($viewKrs as $row) { ?>
+					error_reporting(0);
+					$i = 1;
+					$sks = 0;
+					foreach ($viewKrs as $row) {
+						$sks = $sks + $row->sks; ?>
                                         <?php if ($row->semester == $tahun['semester']) { ?>
+                                        <?php if ($row->smt == $mhs['semester']) { ?>
                                         <tr>
                                             <td><?php echo $i++; ?></td>
                                             <td><?php echo $row->kd_mk; ?></td>
                                             <td><?php echo $row->matakuliah; ?></td>
                                             <td><?php echo $row->sks; ?></td>
-                                            <td><?php echo $row->smt; ?></td>
-                                            <td><a href="<?php echo base_url('mhs/krs/delete/' . $row->id_krs); ?>"
-                                                    class="btn btn-sm btn-sm btn-danger"
-                                                    onclick="return confirm('Yakin akan dihapus?')">
-                                                    <i class="fa fa-trash-alt"></i></a></td>
-
+                                            <td><?php echo $row->nilai_uas; ?></td>
                                         </tr>
+                                        <?php } ?>
+                                        <?php } ?>
+                                        <?php } ?>
                                     </tbody>
-                                    <?php } ?>
-                                    <?php } ?>
                                 </table>
 
                             </div>

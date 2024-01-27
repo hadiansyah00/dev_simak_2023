@@ -7,13 +7,13 @@ class Auth extends CI_Controller
 	{
 		$this->load->view('login');
 		// $this->load->view('login_baak');
-		  $this->ModelSecurity->getCsrf();
+		
 
 	}
 
 	public function getLogin()
 	{
-    
+    $this->ModelSecurity->getCsrf();
 		$this->form_validation->set_rules('username', 'Username', 'required', ['required' => 'Username wajib diisi']);
 		$this->form_validation->set_rules('password', 'Password', 'required', ['required' => 'Password wajib diisi']);
 		$this->form_validation->set_rules('level', 'Level', 'required', ['required' => 'Level wajib diisi']);

@@ -10,10 +10,13 @@ class Kurikulum extends CI_Controller
 		//url security
 		$this->ModelSecurity->getSecurity();
 		$this->load->model('KurikulumModel');
+
 	}
 
 	public function index()
 	{
+		
+		
 		$data['title'] = 'Modul Matakuliah SBH';
 		$data['judul'] = 'Akademik';
 		$data['subJudul'] = 'Matakuliah ';
@@ -27,6 +30,7 @@ class Kurikulum extends CI_Controller
 	
 	public function index_kurikulum($id)
 	{
+		
 		$data['title'] = 'Modul Matakuliah SBH';
 		$data['judul'] = 'Akademik';
 		$data['subJudul'] = 'Matakuliah';
@@ -56,6 +60,8 @@ class Kurikulum extends CI_Controller
 	
 	public function insert($kd_jurusan)
 	{
+      $this->ModelSecurity->getCsrf();
+		
 		$ta = $this->TaModel->getAktif()->result();
 		foreach ($ta as $t) :
 			$a = $t->id_ta;
@@ -92,8 +98,9 @@ class Kurikulum extends CI_Controller
 
 	public function delete($id)
 	{
+		
+		
 		$where = array('id_kurikulum' => $id);
-
 		$this->db->delete('kurikulum', $where);
 		$this->session->set_flashdata(
 			'pesan',

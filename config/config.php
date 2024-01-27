@@ -23,14 +23,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-
-    $ht = "https://";
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+    $protocol = 'https://';
 } else {
-	$ht = "http://";
+    $protocol = 'http://';
 }
-$config['base_url'] = $ht.$_SERVER['HTTP_HOST'];
-$config['base_url'] .= preg_replace('@/+$@','',dirname($_SERVER['SCRIPT_NAME'])).'/';
+
+$host = $_SERVER['HTTP_HOST'];
+$script_dir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+
+$config['base_url'] = $protocol . $host . $script_dir . '/';
+
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -462,9 +465,10 @@ $config['csrf_cookie_name'] = 'csrf_cookie_name';
 $config['csrf_expire'] = 7200; // Waktu kedaluwarsa CSRF token
 $config['csrf_regenerate'] = TRUE;
 $config['csrf_exclude_uris'] = array(
+	'Auth/getLogin',
 	'mhs/krs/simpan_krs',
-
 	'mhs/Evaluasi_mhs/simpan',
+	'mhs/Evaluasi_mhs/simpan_dosen_2',
 	'auth/login',
 	'auth/bauk_login',
 	'auth/baak',
@@ -475,8 +479,8 @@ $config['csrf_exclude_uris'] = array(
 	'mhs/profil/updateAksi',
 	'mhs/profil/updatePhoto',
 	'mhs/profil/updateAksiSemester',
-	
-
+	'admin/kurikulum/insert',
+	'admin/kurikulum/insert/{kd_jurusan}'
 );
 
 /*
