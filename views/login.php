@@ -187,16 +187,7 @@
             return false;
         }
 
-        // 	var flash = $('#flash').data('flash');
-        // 		if(flash){
-        // 			Swal.fire({
-        // 				icon: 'warning',
-        // 				title: 'Oopss...',
-        // 				confirmButtonText:'OK'
-        // 				text: flash
-        // 			});
 
-        // 		}
     }
     </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

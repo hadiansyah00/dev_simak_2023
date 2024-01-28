@@ -5,131 +5,55 @@ class Auth extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('login');
+		$this->load->view('auth_login-st');
 		// $this->load->view('login_baak');
 		
 
 	}
 
 	public function getLogin()
-	{
+{
     $this->ModelSecurity->getCsrf();
-		$this->form_validation->set_rules('username', 'Username', 'required', ['required' => 'Username wajib diisi']);
-		$this->form_validation->set_rules('password', 'Password', 'required', ['required' => 'Password wajib diisi']);
-		$this->form_validation->set_rules('level', 'Level', 'required', ['required' => 'Level wajib diisi']);
-		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('login');
-		} else {
-			$level    = $this->input->post('level');
-			$username = $this->input->post('username', TRUE);
-			$password = $this->input->post('password', TRUE);
+    $this->form_validation->set_rules('username', 'Username', 'required', ['required' => 'Username wajib diisi']);
+    $this->form_validation->set_rules('password', 'Password', 'required', ['required' => 'Password wajib diisi']);
+    $this->form_validation->set_rules('level', 'Level', 'required', ['required' => 'Level wajib diisi']);
 
-			//$level_admin = $this->db->get('users')->row_array();
+    if ($this->form_validation->run() == FALSE) {
+        // Jika validasi form gagal, kembalikan pesan kesalahan
+        $response = ['status' => 'error', 'message' => validation_errors()];
+    } else {
+        $level    = $this->input->post('level');
+        $username = $this->input->post('username', TRUE);
+        $password = $this->input->post('password', TRUE);
+        $pass = md5($password);
 
-			$pass = md5($password);
+        if ($level == 'admin') {
+            $cek_user = $this->UserModel->loginUser($username, $pass);
+            if ($cek_user) {
+                $response = ['status' => 'success', 'redirect' => 'admin/dashboard'];
+            } else {
+                $response = ['status' => 'error', 'message' => 'Invalid username, password, or level.'];
+            }
+        } elseif ($level == 'mahasiswa') {
+            $cek_mhs = $this->UserModel->loginMhs($username, $pass);
+            if ($cek_mhs) {
+                $response = ['status' => 'success', 'redirect' => 'mhs/home'];
+            } else {
+                $response = ['status' => 'error', 'message' => 'Invalid username, password, or level.'];
+            }
+        } elseif ($level == 'dosen') {
+            $cek_dosen = $this->UserModel->loginDosen($username, $pass);
+            if ($cek_dosen) {
+                $response = ['status' => 'success', 'redirect' => 'dosen/home'];
+            } else {
+                $response = ['status' => 'error', 'message' => 'Invalid username, password, or level.'];
+            }
+        }
+    }
 
-			if ($level == 'admin') {
-				$cek_user = $this->UserModel->loginUser($username, $pass);
-				if ($cek_user) {
-					//jika data cocok dgn database
-					$this->session->set_userdata('level', $level);
-					$this->session->set_userdata('username', $cek_user->username);
-					//$this->session->set_userdata('username', $cek_user->email);
+    echo json_encode($response);
+}
 
-					//login
-					return redirect('admin/dashboard');
-				} else {
-					//jika gagal
-					$this->session->set_flashdata(
-						'pesan',
-						'<div class="alert alert-block alert-danger">
-				<button type="button" class="close" data-dismiss="alert">
-					<i class="ace-icon fa fa-times"></i>
-				</button>
-
-				<i class="ace-icon fa fa-xmark red"></i>
-
-				
-				<strong class="red">
-					Username Atau Password Salah !!
-				</strong>
-			</div>'
-					);
-					return redirect('auth');
-				}
-			} elseif ($level == 'mahasiswa') {
-				//LOGIN MAHASISWA
-				$cek_mhs = $this->UserModel->loginMhs($username, $pass);
-
-				if ($cek_mhs) {
-					//jika data cocok dgn database
-
-					$this->session->set_userdata('level', $level);
-					$this->session->set_userdata('username', $cek_mhs->nim);
-					$this->session->set_userdata('sess_nama', $cek_mhs->nama_mhs);
-					$this->session->set_userdata('sess_nama', $cek_mhs->photo);
-					// $this->session->set_userdata('photo', $cek_mhs['photo']);
-					//var_dump($c);die();
-					//login
-
-					return redirect('mhs/home');
-				} else {
-					//jika gagal
-					$this->session->set_flashdata(
-						'pesan',
-						'<div class="alert alert-block alert-danger">
-				<button type="button" class="close" data-dismiss="alert">
-					<i class="ace-icon fa fa-times"></i>
-				</button>
-
-				<i class="ace-icon fa fa-xmark red"></i>
-
-				
-				<strong class="red">
-					Username Atau Password Salah !!
-				</strong>
-			</div>'
-					);
-					return redirect('auth');
-				}
-			} elseif ($level == 'dosen') {
-				//LOGIN DOSEN
-				$cek_dosen = $this->UserModel->loginDosen($username, $pass);
-
-				if ($cek_dosen) {
-					//jika data cocok dgn database
-
-					$this->session->set_userdata('level', $level);
-					$this->session->set_userdata('username', $cek_dosen->kd_dosen);
-					$this->session->set_userdata('sess_nama', $cek_dosen->nama_dosen);
-					// $this->session->set_userdata('sess_nama', $cek_dosen->photo);
-					// $this->session->set_userdata('photo', $cek_mhs['photo']);
-					//var_dump($c);die();
-					//login
-
-					return redirect('dosen/home');
-				} else {
-					//jika gagal
-					$this->session->set_flashdata(
-						'pesan',
-						'<div class="alert alert-block alert-danger">
-				<button type="button" class="close" data-dismiss="alert">
-					<i class="ace-icon fa fa-times"></i>
-				</button>
-
-				<i class="ace-icon fa fa-xmark red"></i>
-
-				
-				<strong class="red">
-					Username Atau Password Salah !!
-				</strong>
-			</div>'
-					);
-					return redirect('auth');
-				}
-			}
-		}
-	}
 
 	// else{
 	//       $this->session->set_flashdata(
